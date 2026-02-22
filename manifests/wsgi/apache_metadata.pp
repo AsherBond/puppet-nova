@@ -183,6 +183,8 @@ class nova::wsgi::apache_metadata (
     fail('nova::metadata class must be declared in composition layer.')
   }
 
+  Anchor['nova::install::end'] -> Class['apache']
+
   Service <| title == 'httpd' |> { tag +> 'nova-service' }
 
   openstacklib::wsgi::apache { 'nova_metadata_wsgi':
